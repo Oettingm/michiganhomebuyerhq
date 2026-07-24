@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-fraunces: "Fraunces", serif;
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: #faf8f3;
+  color: #1c1c1a;
+}
+
+/* Shoreline divider — the site's signature motif, a topographic line
+   standing in for Michigan's coastline. Used sparingly, once per page. */
+.shoreline {
+  width: 100%;
+  height: 24px;
+}
+
+.prose-guide h2 {
+  font-family: var(--font-fraunces);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: #16332a;
+}
+
+.prose-guide h3 {
+  font-family: var(--font-fraunces);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #16332a;
+}
+
+.prose-guide p {
+  line-height: 1.75;
+  margin-bottom: 1.1rem;
+  color: #1c1c1a;
+}
+
+.prose-guide ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.prose-guide li {
+  margin-bottom: 0.4rem;
+  line-height: 1.65;
+}
+
+.prose-guide strong {
+  color: #16332a;
+}
