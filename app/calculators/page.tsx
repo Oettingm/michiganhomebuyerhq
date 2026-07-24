@@ -24,6 +24,12 @@ const calculators = [
     description:
       "Compare the real cost of renting vs buying over the years you plan to stay.",
   },
+  {
+    href: "/calculators/property-tax",
+    title: "Property Tax Estimator",
+    description:
+      "Estimate your annual and monthly property tax by purchase price and county.",
+  },
 ];
 
 export default function CalculatorsIndex() {
