@@ -16,30 +16,70 @@ export default function AboutPage() {
         About MichiganHomeBuyerHQ
       </h1>
 
-      <p className="text-slate leading-relaxed mb-4">
-        MichiganHomeBuyerHQ exists to answer the question every buyer
-        actually has — <em>can I afford this, and how would it work?</em> —
-        without an application, a sales pitch, or a call you didn&rsquo;t
-        ask for.
-      </p>
-      <p className="text-slate leading-relaxed mb-10">
-        That means plain-language guides instead of jargon, real
-        calculators you can run with your own numbers, and a straight
-        look at Michigan-specific programs like MSHDA down payment
-        assistance and city-run homebuyer help — the kind of information
-        that&rsquo;s normally scattered across a dozen different sites.
-      </p>
+      <section className="mb-10">
+        <h2 className="font-display text-2xl text-pine mb-4">
+          Why this site exists
+        </h2>
+        <p className="text-slate leading-relaxed">
+          MichiganHomeBuyerHQ is meant to be a one-stop shop for Michigan
+          homebuyers — plain-language guides, real calculators, and
+          current down payment assistance information, all in one place.
+          No application, no pressure, no jargon. The goal is to answer
+          the questions buyers actually have — &ldquo;can I afford
+          this,&rdquo; &ldquo;how much cash do I need,&rdquo; &ldquo;what
+          programs am I missing&rdquo; — before they ever need to talk to
+          a lender.
+        </p>
+      </section>
 
-      {/* Placeholder — replace with real bio/company copy, credentials,
-          and contact details before launch. Matches the footer's
-          compliance placeholder in spirit: don't ship this as-is. */}
-      <div className="border border-pine/15 rounded-sm p-6 bg-pine/[0.03]">
+      <section className="mb-6">
+        <h2 className="font-display text-2xl text-pine mb-4">
+          About Matthew Oetting
+        </h2>
+        <p className="text-slate leading-relaxed">
+          Matthew Oetting is an <strong>Executive Loan Officer</strong>{" "}
+          (NMLS #1639468) with <strong>Best Interest Financial</strong>{" "}
+          (BIF Mortgage, NMLS #2469842), licensed in Michigan,
+          Pennsylvania, Florida, Georgia, Texas, Colorado, Minnesota, and
+          Ohio. He works with a wide range of borrowers — from standard
+          W-2 buyers to more complex, credit-challenged, and
+          non-traditional income situations — with a particular focus on
+          down payment assistance programs.
+        </p>
+      </section>
+
+      {/* Placeholder — replace with a personal note before launch. Matches
+          the footer's compliance placeholder in spirit: don't ship this
+          as-is. */}
+      <div className="border border-pine/15 rounded-sm p-6 bg-pine/[0.03] mb-10">
         <p className="text-xs text-slate/70 leading-relaxed">
-          [About-page placeholder — replace with who&rsquo;s actually behind
-          this site before launch: your name or company, background,
-          licensing/NMLS details if applicable, and contact information.]
+          [PLACEHOLDER — Add a few sentences here about why you personally
+          started this site, and how long you&rsquo;ve been in the
+          mortgage business.]
         </p>
       </div>
+
+      <section>
+        <h2 className="font-display text-2xl text-pine mb-4">Contact</h2>
+        <p className="text-slate leading-relaxed">
+          <a href="tel:7347550871" className="text-pine font-medium border-b border-amber hover:text-amber transition">
+            734-755-0871
+          </a>
+          {" · "}
+          <a href="mailto:matthew@bifmortgage.com" className="text-pine font-medium border-b border-amber hover:text-amber transition">
+            matthew@bifmortgage.com
+          </a>
+          {" · "}
+          <a
+            href="https://bestinterest.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-pine font-medium border-b border-amber hover:text-amber transition"
+          >
+            Bestinterest.com
+          </a>
+        </p>
+      </section>
 
       <div className="mt-16 border border-pine/15 rounded-sm p-8 text-center bg-pine/[0.03]">
         <h2 className="font-display text-xl text-pine mb-2">
