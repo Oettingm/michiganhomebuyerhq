@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllGuides } from "@/lib/guides";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 
 export default function Home() {
   const guides = getAllGuides();
@@ -70,20 +71,7 @@ export default function Home() {
           <p className="text-paper/70 mb-6">
             Every program, every calculator, every county — in one free PDF.
           </p>
-          <form className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="you@email.com"
-              className="flex-1 px-4 py-3 rounded-sm text-ink"
-              aria-label="Email address"
-            />
-            <button
-              type="submit"
-              className="bg-amber text-pine-dark font-semibold px-6 py-3 rounded-sm hover:bg-amber-light transition"
-            >
-              Send it to me
-            </button>
-          </form>
+          <LeadCaptureForm />
         </div>
       </section>
     </>

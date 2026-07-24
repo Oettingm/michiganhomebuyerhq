@@ -1,2 +1,8 @@
 node_modules
 .next
+
+# Captured lead data — contains real emails, never commit
+/data
+
+# Local secrets (ADMIN_PASSWORD, etc.)
+.env*.local
