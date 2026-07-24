@@ -28,11 +28,16 @@ no code changes needed.
 3. In Vercel's project settings, add your domain
    (michiganhomebuyerhq.com) under "Domains" and follow the DNS
    instructions it gives you at your registrar.
+4. In Vercel's project settings under "Environment Variables," set
+   `CONVERTKIT_API_KEY` and `CONVERTKIT_FORM_ID` — the homepage email
+   signup form calls ConvertKit's API directly and returns an error to
+   the user if either is missing. For local development, add the same
+   two variables to `.env.local` (gitignored, never commit real keys).
 
 ## What's built so far
 
-- Homepage with hero, live guide list, and email capture (form doesn't
-  submit anywhere yet — needs a webhook to your CRM/email tool)
+- Homepage with hero, live guide list, and email capture (submits to
+  ConvertKit — see env vars above)
 - `/guides` index page
 - `/guides/[slug]` article template with FAQ section and soft CTA
 - One real article: "How Much Are Closing Costs in Michigan?"
@@ -41,6 +46,5 @@ no code changes needed.
 
 - Calculators (`/calculators`)
 - DPA Finder (`/down-payment-assistance`)
-- Lead capture backend (the email form is currently non-functional)
 - Compliance footer language — placeholder text is in `components/Footer.tsx`,
   marked clearly — replace before launch

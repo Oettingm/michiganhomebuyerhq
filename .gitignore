@@ -1,8 +1,8 @@
 node_modules
 .next
 
-# Captured lead data — contains real emails, never commit
+# Local submission-throttle log — contains real emails, never commit
 /data
 
-# Local secrets (ADMIN_PASSWORD, etc.)
+# Local secrets (CONVERTKIT_API_KEY, etc.)
 .env*.local
