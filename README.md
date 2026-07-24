@@ -1,7 +1,7 @@
 # MichiganHomeBuyerHQ
 
-Minimal Next.js starting shell: homepage, guides index, and one working
-article template rendering real content from `content/guides/`.
+Next.js site for Michigan homebuyers: a homepage, a guides library, and a
+set of interactive calculators, with lead capture wired to ConvertKit.
 
 ## Run it locally
 
@@ -38,13 +38,22 @@ no code changes needed.
 
 - Homepage with hero, live guide list, and email capture (submits to
   ConvertKit — see env vars above)
-- `/guides` index page
-- `/guides/[slug]` article template with FAQ section and soft CTA
-- One real article: "How Much Are Closing Costs in Michigan?"
+- `/guides` index and `/guides/[slug]` article template with FAQ section
+  and soft CTA — 12 guides live in `content/guides/`
+- `/calculators` index, plus four working calculators:
+  - Monthly Payment Calculator (`/calculators/monthly-payment`)
+  - Closing Cost Calculator (`/calculators/closing-costs`)
+  - Rent vs Buy Calculator (`/calculators/rent-vs-buy`)
+  - Property Tax Estimator (`/calculators/property-tax`) — looks up a
+    property's county and school district from a typed address, using
+    `/api/geocode` (Census Bureau Geocoder) and `/api/address-suggest`
+    (OpenStreetMap Nominatim, for autocomplete)
 
 ## Not built yet
 
-- Calculators (`/calculators`)
-- DPA Finder (`/down-payment-assistance`)
+- DPA Finder — the header nav links to `/down-payment-assistance`, but
+  that page doesn't exist yet (currently 404s)
+- About page — same issue, linked from the header nav as `/about` but
+  not built
 - Compliance footer language — placeholder text is in `components/Footer.tsx`,
   marked clearly — replace before launch
