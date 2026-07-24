@@ -58,6 +58,15 @@ export async function GET(request: NextRequest) {
   }
 
   if (!response.ok) {
+    if (response.status === 400) {
+      return NextResponse.json(
+        {
+          error:
+            "That address couldn't be processed — try a shorter, standard mailing address (street, city, zip).",
+        },
+        { status: 422 }
+      );
+    }
     return NextResponse.json(
       { error: "Couldn't reach the address lookup service. Please try again." },
       { status: 502 }

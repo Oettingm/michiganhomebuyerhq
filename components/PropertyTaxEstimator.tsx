@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function formatCurrency(n: number) {
   return n.toLocaleString("en-US", {
@@ -32,6 +32,7 @@ const COUNTIES = [
 
 const NON_HOMESTEAD_ADDER_MILLS = 18;
 const LOOKUP_TIMEOUT_MS = 15000;
+const SUGGEST_DEBOUNCE_MS = 300;
 
 type LookupResult = {
   county: string;
@@ -48,10 +49,46 @@ export default function PropertyTaxEstimator() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [result, setResult] = useState<LookupResult | null>(null);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const suggestRequestId = useRef(0);
 
-    const trimmed = address.trim();
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
+
+  function handleAddressChange(value: string) {
+    setAddress(value);
+    setShowSuggestions(true);
+
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    if (value.trim().length < 5) {
+      setSuggestions([]);
+      return;
+    }
+
+    debounceRef.current = setTimeout(async () => {
+      const requestId = ++suggestRequestId.current;
+      try {
+        const res = await fetch(
+          `/api/address-suggest?q=${encodeURIComponent(value.trim())}`
+        );
+        const data = await res.json();
+        if (requestId === suggestRequestId.current) {
+          setSuggestions(data.suggestions ?? []);
+        }
+      } catch {
+        if (requestId === suggestRequestId.current) setSuggestions([]);
+      }
+    }, SUGGEST_DEBOUNCE_MS);
+  }
+
+  async function lookupAddress(addressToLookup: string) {
+    const trimmed = addressToLookup.trim();
     if (!trimmed) {
       setStatus("error");
       setErrorMessage("Enter an address to look up.");
@@ -63,7 +100,7 @@ export default function PropertyTaxEstimator() {
 
     try {
       const res = await fetch(
-        `/api/property-tax-lookup?address=${encodeURIComponent(trimmed)}`,
+        `/api/geocode?address=${encodeURIComponent(trimmed)}`,
         { signal: AbortSignal.timeout(LOOKUP_TIMEOUT_MS) }
       );
       const data = await res.json();
@@ -99,6 +136,19 @@ export default function PropertyTaxEstimator() {
           : "Something went wrong looking up that address. Please try again."
       );
     }
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setShowSuggestions(false);
+    lookupAddress(address);
+  }
+
+  function handleSuggestionSelect(suggestion: string) {
+    setAddress(suggestion);
+    setSuggestions([]);
+    setShowSuggestions(false);
+    lookupAddress(suggestion);
   }
 
   const county = result ? COUNTIES.find((c) => c.name === result.county) : null;
@@ -139,17 +189,36 @@ export default function PropertyTaxEstimator() {
             />
           </div>
 
-          <div>
+          <div className="relative">
             <label className="block text-sm font-medium text-pine mb-1">
               Property address
             </label>
             <input
               type="text"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={(e) => handleAddressChange(e.target.value)}
+              onFocus={() => setShowSuggestions(true)}
+              onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
               placeholder="123 Main St, Ann Arbor, MI 48104"
+              autoComplete="off"
               className="w-full border border-pine/20 rounded-sm px-3 py-2 font-mono"
             />
+            {showSuggestions && suggestions.length > 0 && (
+              <ul className="absolute z-10 mt-1 w-full bg-white border border-pine/20 rounded-sm shadow-md max-h-60 overflow-y-auto">
+                {suggestions.map((s) => (
+                  <li key={s}>
+                    <button
+                      type="button"
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => handleSuggestionSelect(s)}
+                      className="w-full text-left px-3 py-2 text-sm text-ink hover:bg-pine/5 transition"
+                    >
+                      {s}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div className="md:col-span-2">
