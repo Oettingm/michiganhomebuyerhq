@@ -20,9 +20,10 @@ Origination charges, underwriting, and processing fees. These vary by
 lender, which is part of why shopping more than one quote matters.
 
 ### Third-party fees
-Appraisal, title insurance, title search, survey, and recording fees. These
-are largely set by the market, not the lender, so they don't move much
-between quotes.
+Appraisal, the lender's title insurance policy, title search, survey, and
+recording fees. These are largely set by the market, not the lender, so
+they don't move much between quotes. (The *owner's* title policy is
+typically a seller expense in Michigan — see below.)
 
 ### Prepaid items
 Homeowners insurance (first year, paid upfront), property tax escrow, and
@@ -32,9 +33,17 @@ closing.
 
 ### Michigan-specific line items
 Michigan charges a state transfer tax, and most counties add their own
-county transfer tax on top. Who pays this (buyer or seller) is negotiable
-and often set by local custom rather than law, so it's worth asking early
-rather than assuming.
+county transfer tax on top. By long-standing Michigan custom, the
+**seller** typically pays both the state and county transfer tax, and the
+**seller** typically pays for the **owner's title insurance policy**. The
+buyer typically pays for the **lender's title insurance policy** (a
+separate, less expensive policy your mortgage lender requires) and
+recording fees.
+
+None of this is set by law — it's customary local practice, not a fixed
+requirement, and like anything in a purchase agreement it can be
+negotiated differently. It's worth confirming who's paying what in your
+specific contract rather than assuming the customary split applies.
 
 ## Can the seller help cover this?
 
@@ -67,6 +76,14 @@ covered by credits, not financed into the loan balance, with some
 exceptions on certain refinance transactions.
 
 **Are closing costs the same everywhere in Michigan?**
-No. County transfer tax rates and local recording fees vary, so a home in
-Wayne County and a home in Kent County won't land at exactly the same
-closing cost total even at the same price.
+No. Recording fees and other local costs vary by county, and county
+transfer tax rates aren't uniform statewide either — though that tax is
+customarily seller-paid, so it typically affects the seller's proceeds
+more than the buyer's closing cost total.
+
+**Does the buyer ever end up paying the transfer tax or owner's title
+policy in Michigan?**
+Sometimes — it's customary for the seller to cover these, not required by
+law, so the split can be negotiated differently depending on the deal.
+It's worth confirming this explicitly in your purchase agreement rather
+than assuming the customary split applies.
