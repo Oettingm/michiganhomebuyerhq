@@ -3,7 +3,7 @@ import PropertyTaxEstimator from "@/components/PropertyTaxEstimator";
 export const metadata = {
   title: "Michigan Property Tax Estimator — MichiganHomeBuyerHQ",
   description:
-    "Estimate your annual and monthly property tax by purchase price and Michigan county.",
+    "Estimate your annual and monthly property tax by purchase price and address.",
 };
 
 export default function PropertyTaxEstimatorPage() {
@@ -16,8 +16,9 @@ export default function PropertyTaxEstimatorPage() {
         Property Tax Estimator
       </h1>
       <p className="text-slate mb-8">
-        See an estimated property tax bill by purchase price and county,
-        using Michigan's taxable value rules.
+        Enter a Michigan address to see an estimated property tax bill,
+        using the county's average millage rate and Michigan's taxable
+        value rules.
       </p>
 
       <PropertyTaxEstimator />
