@@ -42,7 +42,13 @@ export async function getGuideBySlug(slug: string) {
   const { data, content } = matter(fileContents);
 
   const processedContent = await remark().use(remarkHtml).process(content);
-  const contentHtml = processedContent.toString();
+  // Give the FAQ heading a stable id so the FAQ hub can deep-link into it.
+  const contentHtml = processedContent
+    .toString()
+    .replace(
+      "<h2>Frequently asked questions</h2>",
+      '<h2 id="faq">Frequently asked questions</h2>'
+    );
 
   return {
     slug,
@@ -52,4 +58,16 @@ export async function getGuideBySlug(slug: string) {
     updated: data.updated as string,
     contentHtml,
   };
+}
+
+// Prioritizes same-category guides, then fills any remaining slots with others.
+export function getRelatedGuides(
+  slug: string,
+  category: string,
+  count = 3
+): GuideMeta[] {
+  const others = getAllGuides().filter((guide) => guide.slug !== slug);
+  const sameCategory = others.filter((guide) => guide.category === category);
+  const rest = others.filter((guide) => guide.category !== category);
+  return [...sameCategory, ...rest].slice(0, count);
 }

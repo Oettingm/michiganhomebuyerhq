@@ -1,4 +1,4 @@
-import { getAllGuides, getGuideBySlug } from "@/lib/guides";
+import { getAllGuides, getGuideBySlug, getRelatedGuides } from "@/lib/guides";
 import Link from "next/link";
 
 export async function generateStaticParams() {
@@ -26,6 +26,7 @@ export default async function GuidePage({
 }) {
   const { slug } = await params;
   const guide = await getGuideBySlug(slug);
+  const relatedGuides = getRelatedGuides(guide.slug, guide.category);
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
@@ -59,6 +60,33 @@ export default async function GuidePage({
           Try the calculator
         </Link>
       </div>
+
+      {relatedGuides.length > 0 && (
+        <div className="mt-16 pt-12 border-t border-pine/10">
+          <h2 className="font-display text-2xl text-pine mb-6">
+            You might also want to read
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {relatedGuides.map((related) => (
+              <Link
+                key={related.slug}
+                href={`/guides/${related.slug}`}
+                className="block border border-pine/10 rounded-sm p-6 hover:border-amber transition group"
+              >
+                <p className="text-xs uppercase tracking-wide text-amber font-medium mb-2">
+                  {related.category}
+                </p>
+                <h3 className="font-display text-lg text-pine mb-2 group-hover:text-amber transition">
+                  {related.title}
+                </h3>
+                <p className="text-slate text-sm leading-relaxed">
+                  {related.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </article>
   );
 }

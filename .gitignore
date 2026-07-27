@@ -1,5 +1,6 @@
 node_modules
 .next
+*.tsbuildinfo
 
 # Local submission-throttle log — contains real emails, never commit
 /data

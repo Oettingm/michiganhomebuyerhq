@@ -17,6 +17,9 @@ export default function Header() {
           <Link href="/down-payment-assistance" className="hover:text-amber-light transition">
             DPA Finder
           </Link>
+          <Link href="/faq" className="hover:text-amber-light transition">
+            FAQ
+          </Link>
           <Link href="/about" className="hover:text-amber-light transition">
             About
           </Link>
