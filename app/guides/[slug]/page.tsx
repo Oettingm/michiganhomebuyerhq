@@ -1,5 +1,16 @@
 import { getAllGuides, getGuideBySlug, getRelatedGuides } from "@/lib/guides";
 import Link from "next/link";
+import Image from "next/image";
+
+const HEADER_PHOTOS = [
+  { src: "/images/detroit-skyline.jpg", alt: "The Detroit skyline at dusk" },
+  { src: "/images/grand-rapids.jpg", alt: "Downtown Grand Rapids, Michigan" },
+  { src: "/images/lake-michigan-sunset.jpg", alt: "Sunset over Lake Michigan" },
+  {
+    src: "/images/joe-louis-detroit.jpg",
+    alt: "The Spirit of Detroit statue in downtown Detroit",
+  },
+];
 
 export async function generateStaticParams() {
   const guides = getAllGuides();
@@ -28,8 +39,22 @@ export default async function GuidePage({
   const guide = await getGuideBySlug(slug);
   const relatedGuides = getRelatedGuides(guide.slug, guide.category);
 
+  const allGuides = getAllGuides();
+  const guideIndex = allGuides.findIndex((g) => g.slug === guide.slug);
+  const headerPhoto =
+    HEADER_PHOTOS[(guideIndex < 0 ? 0 : guideIndex) % HEADER_PHOTOS.length];
+
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
+      <div className="relative aspect-[21/9] rounded-sm overflow-hidden border border-pine/10 mb-8">
+        <Image
+          src={headerPhoto.src}
+          alt={headerPhoto.alt}
+          fill
+          sizes="(min-width: 768px) 768px, 100vw"
+          className="object-cover"
+        />
+      </div>
       <p className="text-xs uppercase tracking-wide text-amber font-medium mb-3">
         {guide.category}
       </p>
